@@ -1,0 +1,129 @@
+version: '3.3'
+services:
+  zookeeper:
+      container_name: zookeeper-cntr
+      restart: always
+      image: docker.io/bitnami/zookeeper:3.8
+      ports:
+        - "2181:2181"
+      environment:
+        - ALLOW_ANONYMOUS_LOGIN=yes
+      networks:
+        - kafka_esk_nw
+  kafka:
+      container_name: kafka-cntr
+      restart: always
+      image: docker.io/bitnami/kafka:3.3
+      ports:
+        - "9093:9093"
+      environment:
+        - KAFKA_BROKER_ID=1
+        - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+        - ALLOW_PLAINTEXT_LISTENER=yes
+        - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+        - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+        - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
+        - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+      depends_on:
+        - zookeeper
+      networks:
+        - kafka_esk_nw
+
+  elasticsearch:
+    container_name: elasticsearch-cntr
+    image: bitnami/elasticsearch:8.8.2
+    environment:
+      - cluster.name=kafka-cluster
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data:rw
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    depends_on:
+      - kafka
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+      - kafka_esk_nw
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "50"
+    healthcheck:
+      test: curl -u elastic:elastic -s -f elasticsearch-cntr:9200/_cat/health >/dev/null || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  kibana:
+    container_name: kibana-cntr
+    image: bitnami/kibana:8.8.2
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+      - kafka_esk_nw
+    links: ['elasticsearch']
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "50"
+    healthcheck:
+      test: curl --fail http://kibana-cntr:5601 || exit 1
+      interval: 30s
+      retries: 3
+      timeout: 10s
+
+  spark-master:
+    build: .
+    command: bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+      - "9090:8080"
+      - "7077:7077"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+    networks:
+      - kafka_esk_nw
+
+  spark-worker-1:
+    build: .
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
+      SPARK_MASTER_URL: spark://spark-master:7077
+    networks:
+      - kafka_esk_nw
+
+
+networks:
+  kafka_esk_nw:
+    driver: bridge
+
+volumes:
+  elasticsearch_data:
+    driver: local
