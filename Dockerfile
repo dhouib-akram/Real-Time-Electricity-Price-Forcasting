@@ -21,6 +21,10 @@ ENV PATH $PATH:$SCALA_HOME/bin
 
 
 
+# Create the checkpoints directories and ensure the non-root user has write access
+RUN mkdir -p /opt/bitnami/spark/checkpoints/weather && \
+    mkdir -p /opt/bitnami/spark/checkpoints/energy && \
+    chown -R 1001:1001 /opt/bitnami/spark/checkpoints
 # Install the Elasticsearch client for Python
 RUN pip install elasticsearch==8.8.2
 # Switch back to the default user
