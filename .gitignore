@@ -22,3 +22,4 @@ rad.json
 *.csv
 #Test results file
 TestResults.xml
+*.pkl
