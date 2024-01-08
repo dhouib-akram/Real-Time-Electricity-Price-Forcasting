@@ -24,4 +24,4 @@ rad.json
 TestResults.xml
 *.pkl
 
-./data
+.data/
