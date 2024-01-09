@@ -25,4 +25,4 @@ TestResults.xml
 *.pkl
 
 .data/
-out.txt
+./out.txt
