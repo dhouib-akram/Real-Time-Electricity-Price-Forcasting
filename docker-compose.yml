@@ -131,6 +131,12 @@ services:
       SPARK_MASTER_URL: spark://spark-master:7077
     networks:
       - kafka_esk_nw
+  
+  load-kibaba-dashboad:
+    build: ./kibana
+    command: ['/bin/bash', '-c', 'cat /tmp/load/load_ndjson.sh | tr -d "\r" | bash']
+    depends_on:
+      - kibana
 
 
 
