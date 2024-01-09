@@ -156,6 +156,17 @@ energy_df = (
 )
 energy_df = energy_df.withColumn('generation_coal_all', col("generation fossil hard coal") + col("generation fossil brown coal/lignite"))
 
+energy_df.writeStream \
+        .format("org.elasticsearch.spark.sql") \
+        .outputMode("append")\
+        .option("es.nodes", "elasticsearch")\
+        .option("es.port", "9200")\
+        .option("es.resource", "energy")\
+        .option("es.nodes.wan.only", "true") \
+        .option("checkpointLocation", "tmp/energy1") \
+        .start()
+
+
 # Weather data processing
 weather_df = (
     spark.readStream.format("kafka")
@@ -217,6 +228,16 @@ for city in city_names:
     deduplicated_weather_stream = deduplicated_weather_stream.withColumn(f'temp_range_{city}', abs(temp_max_col - temp_min_col))
 temp_weighted_expr = "+".join([f"temp_{city} * {weights.get(city)}" for city in city_names])
 deduplicated_weather_stream = deduplicated_weather_stream.withColumn("temp_weighted", expr(temp_weighted_expr))
+
+deduplicated_weather_stream.writeStream \
+        .format("org.elasticsearch.spark.sql") \
+        .outputMode("append")\
+        .option("es.nodes", "elasticsearch")\
+        .option("es.port", "9200")\
+        .option("es.resource", "weather")\
+        .option("es.nodes.wan.only", "true") \
+        .option("checkpointLocation", "tmp/weather") \
+        .start()
 # Joining weather and energy data
 joined_stream = (
     deduplicated_weather_stream.join(
@@ -261,14 +282,17 @@ def foreach_batch_function(df, epoch_id):
       .format("kafka") \
       .options(**kafka_sink_options) \
       .save()
+    
+
 
 query = (
     joined_stream
-    .writeStream
-    .outputMode("append")
-    .foreachBatch(foreach_batch_function)
-    .option("checkpointLocation", "./dir")
+    .writeStream \
+    .outputMode("append")\
+    .foreachBatch(foreach_batch_function)\
+    .option("checkpointLocation", "./dir")\
     .start()
+    
 )
 
 query.awaitTermination()
