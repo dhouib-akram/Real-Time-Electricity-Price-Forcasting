@@ -137,8 +137,8 @@ services:
     command: ['/bin/bash', '-c', 'cat /tmp/load/load_ndjson.sh | tr -d "\r" | bash']
     depends_on:
       - kibana
-
-
+    networks:
+      - kafka_esk_nw
 
 networks:
   kafka_esk_nw:

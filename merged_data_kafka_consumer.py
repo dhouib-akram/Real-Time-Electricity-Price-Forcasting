@@ -91,18 +91,21 @@ for message in consumer:
         df_reordered = df[columns_order]
 
 
-        y_value= df['price actual']
+        y_value= df['price actual'].values
         # If predicted value from the previous iteration exists, display it with the actual value
         if predicted_value is not None:
-            print(f"Actual value: {y_value.values[0]}")
+            print(f"Actual value: {y_value}")
             print(f"Predicted value from previous hour: {predicted_value}")
         
-        X = df_reordered
+        X = df_reordered.values
         X_scaled = scaler_X.transform(X)
         X_pca = pca.transform(X_scaled)
+        y = y_value.reshape(-1, 1)
+        y_norm = scaler_y.transform(y)
+        dataset_norm = np.concatenate((X_pca, y_norm), axis=1)
 
         # Add to buffer
-        window_buffer.append(X_pca[0])
+        window_buffer.append(dataset_norm)
         # Check if buffer has 24 messages
         if len(window_buffer) == 24:
             # Convert buffer to array and reshape for LSTM
@@ -114,7 +117,10 @@ for message in consumer:
             predicted_value = scaler_y.inverse_transform(prediction)
             # Slide the window: remove first (oldest) message
             window_buffer.pop(0)
-
+    except KeyError as ke:
+        print(f"KeyError occurred: {ke}")
+        print("Skipping to the next message.")
+        continue
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {e}")
 
