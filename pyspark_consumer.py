@@ -5,10 +5,7 @@ from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from elasticsearch import Elasticsearch
 from pyspark.sql.functions import col, when, dayofweek, hour, dayofmonth, month, year, broadcast
-from pyspark.sql.functions import pandas_udf, PandasUDFType
-from pyspark.sql.functions import udf
 from pyspark.sql.types import DoubleType
-import joblib
 from pyspark.sql.functions import to_json, struct
 
 
