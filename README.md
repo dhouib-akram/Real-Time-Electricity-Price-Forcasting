@@ -20,7 +20,7 @@
 
 ## Overview
 
-This project develops a real-time dashboard for hourly electricity price forecasting, integrating data processing and predictive analytics to provide timely insights into energy market dynamics.
+This project develops a real-time dashboard for hourly electricity price forecasting, integrating data processing and predictive analytics to provide timely insights into electricity market dynamics.
 
 ## System Architecture
 
@@ -36,7 +36,7 @@ The proposed solution's architecture is crafted to fulfill two main goals: strea
 
 ## Hourly Price Forecasting Model
 
-In pursuit of the most effective model for predicting hourly energy prices, we benchmarked four different models: LSTM, Stacked LSTM, 1D CNN, and CNN-LSTM. Each model was selected based on its ability to process time series data and predict future prices efficiently:
+In pursuit of the most effective model for predicting hourly electricity prices, we benchmarked four different models: LSTM, Stacked LSTM, 1D CNN, and CNN-LSTM. Each model was selected based on its ability to process time series data and predict future prices efficiently:
 
 - **LSTM Model**: Quick to train and computationally light, ideal for real-time applications.
 - **Stacked LSTM Model**: Multiple layers capture complex patterns, yielding a nuanced understanding of data.
@@ -105,11 +105,11 @@ The Stacked LSTM model stood out, exhibiting the most promising balance between 
 
 *Figure 2: Final Kibana Dashboard Visualization*
 
-The final Kibana dashboard provides a visual representation of the forecasting model's accuracy and insights into the energy market, showcasing the real-time effectiveness of our solution.
+The final Kibana dashboard provides a visual representation of the forecasting model's accuracy and insights into the electricity market, showcasing the real-time effectiveness of our solution.
 
 ## Conclusion
 
-The Hourly Energy Price Forecasting Dashboard encapsulates a cutting-edge approach to understanding energy market dynamics. By leveraging the latest advancements in data processing and machine learning, it empowers stakeholders to make data-driven decisions with speed and precision. As the energy sector continues to evolve, this tool will prove indispensable for navigating the complexities of market pricing and for supporting sustainable energy practices.
+The Hourly Energy Price Forecasting Dashboard encapsulates a cutting-edge approach to understanding electricity market dynamics. By leveraging the latest advancements in data processing and machine learning, it empowers stakeholders to make data-driven decisions with speed and precision. As the electricity sector continues to evolve, this tool will prove indispensable for navigating the complexities of market pricing and for supporting sustainable electricity practices.
 
 ## Contributors
 <a href="https://github.com/dhouib-akram/Real-Time-Electricity-Price-Forcasting/graphs/contributors">
