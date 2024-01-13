@@ -9,11 +9,11 @@
     <a href="#data-pipeline-overview">Data Pipeline Overview</a> |
     <a href="#hourly-price-forecasting-model">Hourly Price Forecasting Model</a> |
     <a href="#forecasting-evaluation">Forecasting Evaluation</a> |
-    <a href="#setup-and-running-instructions">Setup and Running Instructions</a>
-    <a href="#kibana-dashboard-visualization-examples">Kibana Dashboard Visualization Examples</a>
-    <a href="#final-dashboard-example">Kibana Dashboard Visualization Examples</a>
-    <a href="#conclusion">Conclusion</a>
-    <a href="#contributors">Contributors</a>
+    <a href="#setup-and-running-instructions">Setup and Running Instructions</a> |
+    <a href="#kibana-dashboard-visualization-examples">Kibana Dashboard Visualization Examples</a> |
+    <a href="#final-dashboard-example">Kibana Dashboard Visualization Examples</a> |
+    <a href="#conclusion">Conclusion</a> |
+    <a href="#contributors">Contributors</a> |
   </h4>
 </div>
 <br>
