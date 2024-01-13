@@ -1,16 +1,22 @@
-
-# Hourly Energy Price Forecasting Real-Time Dashboard
-
-- [Overview](#overview)
-- [System Architecture](#system-architecture)
-- [Data Pipeline Overview](#data-pipeline-overview)
-- [Hourly Price Forecasting Model](#hourly-price-forecasting-model)
-- [Forecasting Evaluation](#forecasting-evaluation)
-- [Setup and Running Instructions](#setup-and-running-instructions)
-- [Kibana Dashboard Visualization Examples](#kibana-dashboard-visualization-examples)
-- [Final Dashboard Example](#final-dashboard-example)
-- [Conclusion](#conclusion)
-
+<h1 align="center">
+  <br>
+  Hourly Energy Price Forecasting Real-Time Dashboard
+</h1>
+<div align="center">
+  <h4>
+    <a href="#overview">Overview</a> |
+    <a href="#system-architecture">System Architecture</a> |
+    <a href="#data-pipeline-overview">Data Pipeline Overview</a> |
+    <a href="#hourly-price-forecasting-model">Hourly Price Forecasting Model</a> |
+    <a href="#forecasting-evaluation">Forecasting Evaluation</a> |
+    <a href="#setup-and-running-instructions">Setup and Running Instructions</a>
+    <a href="#kibana-dashboard-visualization-examples">Kibana Dashboard Visualization Examples</a>
+    <a href="#final-dashboard-example">Kibana Dashboard Visualization Examples</a>
+    <a href="#conclusion">Conclusion</a>
+    <a href="#contributors">Contributors</a>
+  </h4>
+</div>
+<br>
 ## Overview
 
 This project develops a real-time dashboard for hourly energy price forecasting, integrating data processing and predictive analytics to provide timely insights into energy market dynamics.
@@ -103,7 +109,8 @@ The final Kibana dashboard provides a visual representation of the forecasting m
 ## Conclusion
 
 The Hourly Energy Price Forecasting Dashboard encapsulates a cutting-edge approach to understanding energy market dynamics. By leveraging the latest advancements in data processing and machine learning, it empowers stakeholders to make data-driven decisions with speed and precision. As the energy sector continues to evolve, this tool will prove indispensable for navigating the complexities of market pricing and for supporting sustainable energy practices.
-## Contribution
+
+## Contributors
 <a href="https://github.com/dhouib-akram/Real-Time-Electricity-Price-Forcasting/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=dhouib-akram/Real-Time-Electricity-Price-Forcasting" />
 </a>
