@@ -20,7 +20,7 @@
 
 ## Overview
 
-This project develops a real-time dashboard for hourly energy price forecasting, integrating data processing and predictive analytics to provide timely insights into energy market dynamics.
+This project develops a real-time dashboard for hourly electricity price forecasting, integrating data processing and predictive analytics to provide timely insights into energy market dynamics.
 
 ## System Architecture
 
