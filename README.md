@@ -49,10 +49,10 @@ showing steady convergence and CNN models capturing local temporal features effe
 ## RMSE scores for different neural network model
 
 
-            | Model           | LSTM  RMSE | Stacked LSTM |  1D CNN   |CNN + LSTM|
-            |-----------------|------------|--------------|-----------|----------|
-            | Validation RMSE |   0.0248   |   0.0227     |  0.021    |  0.0208  |
-            | Test RMSE       |3.171       |   2.48       |  2.345    |   2.436  |
+| Model           | LSTM  RMSE | Stacked LSTM |  1D CNN   |CNN + LSTM|
+|-----------------|------------|--------------|-----------|----------|
+| Validation RMSE |   0.0248   |   0.0227     |  0.021    |  0.0208  |
+| Test RMSE       |3.171       |   2.48       |  2.345    |   2.436  |
 
 
 *Table 1: Performance evaluation of forecasting models*
@@ -103,3 +103,8 @@ The final Kibana dashboard provides a visual representation of the forecasting m
 ## Conclusion
 
 The Hourly Energy Price Forecasting Dashboard encapsulates a cutting-edge approach to understanding energy market dynamics. By leveraging the latest advancements in data processing and machine learning, it empowers stakeholders to make data-driven decisions with speed and precision. As the energy sector continues to evolve, this tool will prove indispensable for navigating the complexities of market pricing and for supporting sustainable energy practices.
+## Contribution
+<a href="https://github.com/dhouib-akram/Real-Time-Electricity-Price-Forcasting/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=dhouib-akram/Real-Time-Electricity-Price-Forcasting" />
+</a>
+
